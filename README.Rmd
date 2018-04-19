@@ -1,0 +1,58 @@
+---
+output: rmarkdown::github_document
+---
+
+# inet
+
+Higher-order Internet Protocol ('IP') Address Methods
+
+## Description
+
+A collection of tools and methods that expand upon the functionality
+of the 'iptools' package. Only 'IPv4' addresses are currently supported.
+
+## What's Inside The Tin
+
+- `as.ipv4`:	Convert a character vector of IP(v4) addresses into an 'ipv4' object
+- `as.numeric`:	Convert an IPv4 object to an numeric vector
+- `enrich`:	Enrich a collection of IP addresses with country and AS information
+- `in_addr_arpa`:	Convert IPv4 addresses into in-addr.arpa format
+- `octets`:	Turn an IPv4 object or a character vector of IPv4 addresses into a data frame of octets
+
+The following functions are implemented:
+
+## Installation
+
+```{r eval=FALSE}
+devtools::install_github("hrbrmstr/inet")
+```
+
+```{r message=FALSE, warning=FALSE, error=FALSE, include=FALSE}
+options(width=120)
+```
+
+## Usage
+
+```{r message=FALSE, warning=FALSE, error=FALSE}
+library(inet)
+library(tidyverse)
+
+# current verison
+packageVersion("inet")
+
+```
+
+```{r}
+set.seed(19216811)
+
+x <- iptools::ip_random(20)
+x <- as.ipv4(x)
+
+as.numeric(x)
+
+enrich(x)
+
+octets(x)
+
+in_addr_arpa(x)
+```

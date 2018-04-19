@@ -1,0 +1,28 @@
+Package: inet
+Type: Package
+Title: Higher-order Internet Protocol ('IP') Address Methods
+Version: 0.1.0
+Date: 2018-04-19
+Authors@R: c(
+    person("Bob", "Rudis", email = "bob@rud.is", role = c("aut", "cre"), 
+           comment = c(ORCID = "0000-0001-5670-2640"))
+  )
+Maintainer: Bob Rudis <bob@rud.is>
+Description: A collection of tools and methods that expand upon the functionality
+    of the 'iptools' package. Only 'IPv4' addresses are currently supported.
+URL: https://github.com/hrbrmstr/inet
+BugReports: https://github.com/hrbrmstr/inet/issues
+Encoding: UTF-8
+License: AGPL
+Suggests:
+    testthat,
+    covr
+Depends:
+    R (>= 3.2.0)
+Imports:
+    iptools,
+    rgeolocate,
+    httr,
+    jsonlite,
+    stats
+RoxygenNote: 6.0.1.9000
