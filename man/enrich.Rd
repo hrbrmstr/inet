@@ -26,6 +26,10 @@ enrich(x, ..., mm_asn_db = Sys.getenv("MAXMIND_ASN_DB_PATH"),
 Takes a character vector of classed IP addresses and minimally converts them
 to their numeric representation. If Maxmind datases are available, country
 and autonomous system (AS) inforamtion will be added as well.
+
+enrich method for IPv4 addresses
+
+enrich method for plain character vector
 }
 \examples{
 x <- iptools::ip_random(10)

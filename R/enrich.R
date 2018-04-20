@@ -43,7 +43,7 @@ enrich.ipv4 <- function(x, mm_asn_db = Sys.getenv("MAXMIND_ASN_DB_PATH"),
     ) -> y
   }
 
-  if (mm_asn_db != "") {
+  if (mm_city_db != "") {
     cbind.data.frame(
       y, rgeolocate::maxmind(x, mm_city_db, "country_name")
     ) -> y
