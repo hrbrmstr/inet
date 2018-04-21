@@ -19,6 +19,8 @@ Currently uses `Remotes:` in the `DESCRIPTION` since it depends on the _developm
 
 ## What's Inside The Tin
 
+The following functions are implemented:
+
 - `as.ipv4`:	Convert a character vector of IP(v4) addresses into an 'ipv4' object
 - `as.numeric`:	Convert an IPv4 object to an numeric vector
 - `decode_toredo`:	Decode Toredo IPv6 strings into components
@@ -27,8 +29,6 @@ Currently uses `Remotes:` in the `DESCRIPTION` since it depends on the _developm
 - `ipv4_to_ipv6`:	Perform 6-to-4 and 4-to-6 addressing
 - `ipv6_to_ipv4`:	Perform 6-to-4 and 4-to-6 addressing
 - `octets`:	Turn an IPv4 object or a character vector of IPv4 addresses into a data frame of octets
-
-The following functions are implemented:
 
 ## Installation
 
