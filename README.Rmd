@@ -1,5 +1,7 @@
 ---
 output: rmarkdown::github_document
+editor_options: 
+  chunk_output_type: console
 ---
 
 # inet
@@ -9,14 +11,21 @@ Higher-order Internet Protocol ('IP') Address Methods
 ## Description
 
 A collection of tools and methods that expand upon the functionality
-of the 'iptools' package. Only 'IPv4' addresses are currently supported.
+of the 'iptools' package. 
+
+## NOTE
+
+Currently uses `Remotes:` in the `DESCRIPTION` since it depends on the _development version_ of `iptools`.
 
 ## What's Inside The Tin
 
 - `as.ipv4`:	Convert a character vector of IP(v4) addresses into an 'ipv4' object
 - `as.numeric`:	Convert an IPv4 object to an numeric vector
+- `decode_toredo`:	Decode Toredo IPv6 strings into components
 - `enrich`:	Enrich a collection of IP addresses with country and AS information
 - `in_addr_arpa`:	Convert IPv4 addresses into in-addr.arpa format
+- `ipv4_to_ipv6`:	Perform 6-to-4 and 4-to-6 addressing
+- `ipv6_to_ipv4`:	Perform 6-to-4 and 4-to-6 addressing
 - `octets`:	Turn an IPv4 object or a character vector of IPv4 addresses into a data frame of octets
 
 The following functions are implemented:
@@ -24,6 +33,7 @@ The following functions are implemented:
 ## Installation
 
 ```{r eval=FALSE}
+devtools::install_github("hrbrmstr/iptools")
 devtools::install_github("hrbrmstr/inet")
 ```
 
@@ -55,4 +65,23 @@ enrich(x)
 octets(x)
 
 in_addr_arpa(x)
+```
+
+### [RFC 3056](https://tools.ietf.org/html/rfc3056>) 6-to-4 / 4-to-6 encoding
+
+```{r}
+set.seed(19216811)
+
+data_frame(
+  src = iptools::ip_random(10),
+  to6 = ipv4_to_ipv6(src),
+  to4 = ipv6_to_ipv4(to6),
+  equal = (src == to4)
+)
+```
+
+### [RFC 4380](https://tools.ietf.org/html/rfc4380) Teredo IPv6 Decoding
+
+```{r}
+decode_toredo("2001:0000:4136:e378:8000:63bf:3fff:fdd2")
 ```

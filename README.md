@@ -6,16 +6,24 @@ Higher-order Internet Protocol (‘IP’) Address Methods
 ## Description
 
 A collection of tools and methods that expand upon the functionality of
-the ‘iptools’ package. Only ‘IPv4’ addresses are currently supported.
+the ‘iptools’ package.
+
+## NOTE
+
+Currently uses `Remotes:` in the `DESCRIPTION` since it depends on the
+*development version* of `iptools`.
 
 ## What’s Inside The Tin
 
   - `as.ipv4`: Convert a character vector of IP(v4) addresses into an
     ‘ipv4’ object
   - `as.numeric`: Convert an IPv4 object to an numeric vector
+  - `decode_toredo`: Decode Toredo IPv6 strings into components
   - `enrich`: Enrich a collection of IP addresses with country and AS
     information
   - `in_addr_arpa`: Convert IPv4 addresses into in-addr.arpa format
+  - `ipv4_to_ipv6`: Perform 6-to-4 and 4-to-6 addressing
+  - `ipv6_to_ipv4`: Perform 6-to-4 and 4-to-6 addressing
   - `octets`: Turn an IPv4 object or a character vector of IPv4
     addresses into a data frame of octets
 
@@ -24,6 +32,7 @@ The following functions are implemented:
 ## Installation
 
 ``` r
+devtools::install_github("hrbrmstr/iptools")
 devtools::install_github("hrbrmstr/inet")
 ```
 
@@ -118,3 +127,41 @@ in_addr_arpa(x)
     ## [13] "250.224.161.90.in-addr.arpa"  "31.103.134.52.in-addr.arpa"   "182.129.190.89.in-addr.arpa" 
     ## [16] "139.149.45.65.in-addr.arpa"   "230.31.202.123.in-addr.arpa"  "13.174.204.85.in-addr.arpa"  
     ## [19] "86.212.23.115.in-addr.arpa"   "9.51.155.114.in-addr.arpa"
+
+### [RFC 3056](https://tools.ietf.org/html/rfc3056%3E) 6-to-4 / 4-to-6 encoding
+
+``` r
+set.seed(19216811)
+
+data_frame(
+  src = iptools::ip_random(10),
+  to6 = ipv4_to_ipv6(src),
+  to4 = ipv6_to_ipv4(to6),
+  equal = (src == to4)
+)
+```
+
+    ## # A tibble: 10 x 4
+    ##    src             to6                       to4             equal
+    ##    <chr>           <chr>                     <chr>           <lgl>
+    ##  1 50.121.45.166   2002:3279:2da6::3279:2da6 50.121.45.166   TRUE 
+    ##  2 2.65.19.146     2002:0241:1392::0241:1392 2.65.19.146     TRUE 
+    ##  3 33.129.144.144  2002:2181:9090::2181:9090 33.129.144.144  TRUE 
+    ##  4 113.129.214.216 2002:7181:d6d8::7181:d6d8 113.129.214.216 TRUE 
+    ##  5 123.150.141.234 2002:7b96:8dea::7b96:8dea 123.150.141.234 TRUE 
+    ##  6 87.48.91.104    2002:5730:5b68::5730:5b68 87.48.91.104    TRUE 
+    ##  7 39.28.70.127    2002:271c:467f::271c:467f 39.28.70.127    TRUE 
+    ##  8 21.208.80.78    2002:15d0:504e::15d0:504e 21.208.80.78    TRUE 
+    ##  9 36.251.29.14    2002:24fb:1d0e::24fb:1d0e 36.251.29.14    TRUE 
+    ## 10 21.235.103.79   2002:15eb:674f::15eb:674f 21.235.103.79   TRUE
+
+### [RFC 4380](https://tools.ietf.org/html/rfc4380) Teredo IPv6 Decoding
+
+``` r
+decode_toredo("2001:0000:4136:e378:8000:63bf:3fff:fdd2")
+```
+
+    ## # A tibble: 1 x 6
+    ##   orig                                    prefix    teredo_server_ipv4 flags udp_port client_ipv4
+    ##   <chr>                                   <chr>     <chr>              <chr>    <int> <chr>      
+    ## 1 2001:0000:4136:e378:8000:63bf:3fff:fdd2 2001:0000 65.54.227.120      8000     40000 192.0.2.45

@@ -7,7 +7,7 @@
 \title{Higher-order Internet Protocol ('IP') Address Methods}
 \description{
 A collection of tools and methods that expand upon the functionality
-of the 'iptools' package. Only 'IPv4' addresses are currently supported.
+of the 'iptools' package.
 }
 \author{
 Bob Rudis (bob@rud.is)

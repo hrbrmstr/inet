@@ -1,7 +1,7 @@
 #' Higher-order Internet Protocol ('IP') Address Methods
 #'
 #' A collection of tools and methods that expand upon the functionality
-#' of the 'iptools' package. Only 'IPv4' addresses are currently supported.
+#' of the 'iptools' package.
 #'
 #' @md
 #' @name inet

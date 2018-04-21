@@ -9,7 +9,7 @@ Authors@R: c(
   )
 Maintainer: Bob Rudis <bob@rud.is>
 Description: A collection of tools and methods that expand upon the functionality
-    of the 'iptools' package. Only 'IPv4' addresses are currently supported.
+    of the 'iptools' package.
 URL: https://github.com/hrbrmstr/inet
 BugReports: https://github.com/hrbrmstr/inet/issues
 Encoding: UTF-8
@@ -20,9 +20,10 @@ Suggests:
 Depends:
     R (>= 3.2.0)
 Imports:
-    iptools,
     rgeolocate,
     httr,
     jsonlite,
     stats
 RoxygenNote: 6.0.1.9000
+Remotes: 
+    hrbrmstr/iptools
